@@ -9,8 +9,8 @@ public class CalcWeb {
             return "No route specified. Try /add/1,2";
         });
         get(
-            "/add/:input",
-            (req, res) -> add(req.params(":input"))
+            "/sub/:input",
+            (req, res) -> sub(req.params(":input"))
         );
     }
 
@@ -22,7 +22,7 @@ public class CalcWeb {
 	return 4567;
     }
 
-    private static int add(String input) {
+    private static int sub(String input) {
         StringCalculator Calculator = new StringCalculator();
         return Calculator.add(input);
     }
