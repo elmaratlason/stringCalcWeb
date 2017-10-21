@@ -9,6 +9,13 @@ cache:
 jdk:
 - oraclejdk8
 
+before_install:
+  - sudo apt-get update -qq
+  - 'which sshpass || ( apt-get update -y && apt-get install sshpass -y )'
+  - 'which openssl || ( apt-get update -y && apt-get install openssl -y )'
+  - 'which ssh-keyscan || ( apt-get update -y && apt-get install keyscan -y )'
+  - ssh-keyscan $REMOTE_SERVER >> ~/.ssh/known_hosts
+    
 deploy:
   provider: heroku
   api_key:
