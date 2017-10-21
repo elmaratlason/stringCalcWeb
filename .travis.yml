@@ -1,4 +1,3 @@
-# https://docs.travis-ci.com/user/customizing-the-build/
 language: java
 before_cache:
 - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
@@ -9,7 +8,6 @@ cache:
   - "$HOME/.gradle/wrapper/"
 jdk:
 - oraclejdk8
-#- oraclejdk9
 
 deploy:
   provider: heroku
@@ -19,14 +17,13 @@ deploy:
   on: master
 
 after_success:
-  'which sshpass || ( apt-get update -y && apt-get install sshpass -y )'
-  'which openssl || ( apt-get update -y && apt-get install openssl -y )'
-  'which keyscan || ( apt-get update -y && apt-get install keyscan -y )'
-  RSYNC_PASSWD=$(openssl enc -base64 -d <<<$SSH_B64_PASS)
-  ssh-keyscan $REMOTE_SERVER >> ~/.ssh/known_hosts
-  pwd
-  ls -l
-  sshpass -p $RSYNC_PASSWORD rsync -am --delete ---quiet $TRAVIS_BUILD_DIR/distributions $SSH_REMOTE_USER>@$REMOTE_SERVER:./builds
-  sshpass -p $RSYNC_PASSWORD rsync -am --delete ---quiet $TRAVIS_BUILD_DIR/reports $SSH_REMOTE_USER>@$REMOTE_SERVER:./builds
-  #sshpass -p E6PgZfFUyDukn6eaJPxr9xYD rsync -am --delete . hugb@www.elmaratla.com:./builds
- 
+  script:
+    - 'which sshpass || ( apt-get update -y && apt-get install sshpass -y )'
+    - 'which openssl || ( apt-get update -y && apt-get install openssl -y )'
+    - 'which keyscan || ( apt-get update -y && apt-get install keyscan -y )'
+    - RSYNC_PASSWD=$(openssl enc -base64 -d <<<$SSH_B64_PASS)
+    - ssh-keyscan $REMOTE_SERVER >> ~/.ssh/known_hosts
+    - pwd
+    - ls -l
+    - sshpass -p $RSYNC_PASSWORD rsync -am --delete ---quiet $TRAVIS_BUILD_DIR/distributions $SSH_REMOTE_USER>@$REMOTE_SERVER:./builds
+    - sshpass -p $RSYNC_PASSWORD rsync -am --delete ---quiet $TRAVIS_BUILD_DIR/reports $SSH_REMOTE_USER>@$REMOTE_SERVER:./builds
