@@ -11,9 +11,9 @@ jdk:
 
 before_install:
   - sudo apt-get update -qq
-  - sudo which sshpass || ( apt-get update -y && apt-get install sshpass -y )
-  - sudo which openssl || ( apt-get update -y && apt-get install openssl -y )
-  - sudo which ssh-keyscan || ( apt-get update -y && apt-get install keyscan -y )
+  - sudo apt-get install sshpass -qq
+  - sudo apt-get install openssl -qq
+  - sudo apt-get install keyscan -qq
   - sudo ssh-keyscan $REMOTE_SERVER >> ~/.ssh/known_hosts
     
 deploy:
