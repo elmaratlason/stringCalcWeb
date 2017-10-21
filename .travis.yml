@@ -21,8 +21,8 @@ after_success:
     - 'which sshpass || ( apt-get update -y && apt-get install sshpass -y )'
     - 'which openssl || ( apt-get update -y && apt-get install openssl -y )'
     - 'which ssh-keyscan || ( apt-get update -y && apt-get install keyscan -y )'
-    - RSYNC_PASSWD=$(openssl enc -base64 -d <<<$SSH_B64_PASS)
     - ssh-keyscan $REMOTE_SERVER >> ~/.ssh/known_hosts
+    - RSYNC_PASSWD=$(openssl enc -base64 -d <<<$SSH_B64_PASS)
     - pwd
     - ls -l
     - sshpass -p $RSYNC_PASSWORD rsync -am --delete ---quiet $TRAVIS_BUILD_DIR/distributions $SSH_REMOTE_USER>@$REMOTE_SERVER:./builds
