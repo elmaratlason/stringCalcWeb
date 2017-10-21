@@ -11,9 +11,9 @@ jdk:
 
 before_install:
   - sudo apt-get update -qq
-  - 'which sshpass || ( apt-get update -y && apt-get install sshpass -y )'
-  - 'which openssl || ( apt-get update -y && apt-get install openssl -y )'
-  - 'which ssh-keyscan || ( apt-get update -y && apt-get install keyscan -y )'
+  - sudo which sshpass || ( apt-get update -y && apt-get install sshpass -y )
+  - sudo which openssl || ( apt-get update -y && apt-get install openssl -y )
+  - sudo which ssh-keyscan || ( apt-get update -y && apt-get install keyscan -y )
   - ssh-keyscan $REMOTE_SERVER >> ~/.ssh/known_hosts
     
 deploy:
@@ -25,10 +25,6 @@ deploy:
 
 after_success:
   script:
-    - 'which sshpass || ( apt-get update -y && apt-get install sshpass -y )'
-    - 'which openssl || ( apt-get update -y && apt-get install openssl -y )'
-    - 'which ssh-keyscan || ( apt-get update -y && apt-get install keyscan -y )'
-    - ssh-keyscan $REMOTE_SERVER >> ~/.ssh/known_hosts
     - RSYNC_PASSWD=$(openssl enc -base64 -d <<<$SSH_B64_PASS)
     - echo $(pwd)
     - echo $(ls -l)
