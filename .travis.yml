@@ -25,5 +25,6 @@ after_success:
     - RSYNC_PASSWD=$(openssl enc -base64 -d <<<$SSH_B64_PASS)
     - echo $(pwd)
     - echo $(ls -l)
+    - echo $TRAVIS_BUILD_DIR
     - sshpass -p $RSYNC_PASSWORD rsync -am --delete ---quiet $TRAVIS_BUILD_DIR/distributions $SSH_REMOTE_USER>@$REMOTE_SERVER:./builds
     - sshpass -p $RSYNC_PASSWORD rsync -am --delete ---quiet $TRAVIS_BUILD_DIR/reports $SSH_REMOTE_USER>@$REMOTE_SERVER:./builds
