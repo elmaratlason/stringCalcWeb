@@ -23,7 +23,7 @@ after_success:
     - 'which ssh-keyscan || ( apt-get update -y && apt-get install keyscan -y )'
     - ssh-keyscan $REMOTE_SERVER >> ~/.ssh/known_hosts
     - RSYNC_PASSWD=$(openssl enc -base64 -d <<<$SSH_B64_PASS)
-    - pwd
-    - ls -l
+    - echo $(pwd)
+    - echo $(ls -l)
     - sshpass -p $RSYNC_PASSWORD rsync -am --delete ---quiet $TRAVIS_BUILD_DIR/distributions $SSH_REMOTE_USER>@$REMOTE_SERVER:./builds
     - sshpass -p $RSYNC_PASSWORD rsync -am --delete ---quiet $TRAVIS_BUILD_DIR/reports $SSH_REMOTE_USER>@$REMOTE_SERVER:./builds
