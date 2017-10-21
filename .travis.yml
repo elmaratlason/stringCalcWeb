@@ -14,7 +14,7 @@ before_install:
   - sudo which sshpass || ( apt-get update -y && apt-get install sshpass -y )
   - sudo which openssl || ( apt-get update -y && apt-get install openssl -y )
   - sudo which ssh-keyscan || ( apt-get update -y && apt-get install keyscan -y )
-  - ssh-keyscan $REMOTE_SERVER >> ~/.ssh/known_hosts
+  - sudo ssh-keyscan $REMOTE_SERVER >> ~/.ssh/known_hosts
     
 deploy:
   provider: heroku
@@ -23,9 +23,9 @@ deploy:
   app: elmar-stringcalcweb
   on: master
 
-after_success:
+install:
   script:
-    - RSYNC_PASSWD=$(openssl enc -base64 -d <<<$SSH_B64_PASS)
+    - sudo RSYNC_PASSWD=$(openssl enc -base64 -d <<<$SSH_B64_PASS)
     - echo $(pwd)
     - echo $(ls -l)
     - echo $TRAVIS_BUILD_DIR
