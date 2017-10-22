@@ -24,7 +24,7 @@ deploy:
   on: master
 
 install:
-  - sudo RSYNC_PASSWD=$(openssl enc -base64 -d <<<$SSH_B64_PASS)
+  - RSYNC_PASSWD=$(openssl enc -base64 -d <<<$SSH_B64_PASS)
   - echo $(pwd)
   - echo $(ls -l)
   - echo $TRAVIS_BUILD_DIR
