@@ -25,10 +25,9 @@ deploy:
   
 install:  
   - gradle clean build javadoc
-  - RSYNC_PASSWD=$(openssl enc -base64 -d <<<$SSH_B64_PASS)
-  - echo $(pwd)
-  - echo $(ls -l)
-  - echo $TRAVIS_BUILD_DIR
-  - echo $SSH_REMOTE_USER@$REMOTE_SERVER
-  - sshpass -e $RSYNC_PASSWORD rsync -am --delete $TRAVIS_BUILD_DIR/build/distributions $SSH_REMOTE_USER@$REMOTE_SERVER:./
-  - sshpass -e $RSYNC_PASSWORD rsync -am --delete $TRAVIS_BUILD_DIR/build/reports $SSH_REMOTE_USER@$REMOTE_SERVER:./reports
+  - mv $TRAVIS_BUILD_DIR/build/distributions/*.zip *$(date +\"%Y%m%d\")_$TRAVIS_JOB_ID.zip
+  - sshpass -e rsync -am --delete $TRAVIS_BUILD_DIR/build/distributions/*.zip $SSH_REMOTE_USER@$REMOTE_SERVER:./
+  - sshpass -e rsync -am --delete $TRAVIS_BUILD_DIR/build/reports $SSH_REMOTE_USER@$REMOTE_SERVER:./reports
+  
+addons:
+  artifacts: true
