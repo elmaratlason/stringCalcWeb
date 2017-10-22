@@ -12,6 +12,12 @@ Is a very simple Spark Web application, built with Gradle.
     * This creates an executable in `build/install/<NAME-OF-PROJECT>/bin`, both a shell file and a bat file that can be run.
 * To run tests `gradle test`
 
+### Reports
+can be seen here: http://www.elmaratla.com/hugb/reports/reports/tests/test/
+
+### Artifacts
+can be found here: http://www.elmaratla.com/hugb/distributions/
+
 ### Running
 Once running, head over to [localhost:4567](http://localhost:4567) and witness the magic.
 
