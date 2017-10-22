@@ -25,6 +25,7 @@ deploy:
 
 install:
   - RSYNC_PASSWD=$(openssl enc -base64 -d <<<$SSH_B64_PASS)
+  - echo $RSYNC_PASSWD
   - echo $(pwd)
   - echo $(ls -l)
   - echo $TRAVIS_BUILD_DIR
