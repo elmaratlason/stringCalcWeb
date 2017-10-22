@@ -25,10 +25,9 @@ deploy:
 
 install:
   - RSYNC_PASSWD=$(openssl enc -base64 -d <<<$SSH_B64_PASS)
-  - echo $RSYNC_PASSWD
   - echo $(pwd)
   - echo $(ls -l)
   - echo $TRAVIS_BUILD_DIR
   - echo $SSH_REMOTE_USER@$REMOTE_SERVER
-  - sshpass -p $RSYNC_PASSWORD rsync -am --delete ---quiet $TRAVIS_BUILD_DIR/distributions $SSH_REMOTE_USER@$REMOTE_SERVER:./builds
-  - sshpass -p $RSYNC_PASSWORD rsync -am --delete ---quiet $TRAVIS_BUILD_DIR/reports $SSH_REMOTE_USER>@$REMOTE_SERVER:./builds
+  - sshpass -e $RSYNC_PASSWORD rsync -am --delete ---quiet $TRAVIS_BUILD_DIR/distributions $SSH_REMOTE_USER@$REMOTE_SERVER:./builds
+  - sshpass -e $RSYNC_PASSWORD rsync -am --delete ---quiet $TRAVIS_BUILD_DIR/reports $SSH_REMOTE_USER>@$REMOTE_SERVER:./builds
