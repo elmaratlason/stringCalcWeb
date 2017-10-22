@@ -29,5 +29,5 @@ install:
   - echo $(ls -l)
   - echo $TRAVIS_BUILD_DIR
   - echo $SSH_REMOTE_USER@$REMOTE_SERVER
-  - sshpass -e $RSYNC_PASSWORD rsync -am --delete ---quiet $TRAVIS_BUILD_DIR/distributions $SSH_REMOTE_USER@$REMOTE_SERVER:./builds
-  - sshpass -e $RSYNC_PASSWORD rsync -am --delete ---quiet $TRAVIS_BUILD_DIR/reports $SSH_REMOTE_USER>@$REMOTE_SERVER:./builds
+  - sshpass -e $RSYNC_PASSWORD rsync -am --delete $TRAVIS_BUILD_DIR/distributions $SSH_REMOTE_USER@$REMOTE_SERVER:./builds
+  - sshpass -e $RSYNC_PASSWORD rsync -am --delete $TRAVIS_BUILD_DIR/reports $SSH_REMOTE_USER>@$REMOTE_SERVER:./reports
