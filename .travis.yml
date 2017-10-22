@@ -22,8 +22,6 @@ deploy:
     secure: QbwSeU9XnBkDDzh4VuFqT9Nhsddr3hmwl/21Qi9lXJPP6vgPbX90M6uXBFx1jQMY1Ut9xjQGZjsBYkqmev/GpUaDbTuTORw+IUS8VNcf2xY0LT+0Iy8kjdvzjmmpGpoNQsBStk+5l34xlM/8JvYNp+GMdQZLRaxTkjBfGF5lsupUMBvaVXIvO3G4Q9FTLSQdwI+kLZxB5Al6YTlDQAFQWpz09RojnCXK5IUe5OmT+jHwgtRh138g6ioK9sxEsBB244PQNxLWh4SpSOauJHM2tr+tCiBgFRdyVTC5nsXe13LXjCWcsR9YAEo/T5lTe5EfOq8HSXcoRsRt/JK2s1oMRk3kHpvcvBSNphzgcNUfqe6r9FITP/o3eojl9BYiCL8o3ejB+I4ChGFTuiQt+gTLQSJk07Sv92pArTflkrYgW07rVxn474GM+4BP3pX2frFAMW8mXGgXEFStRa+G5umOGoCAFAt/bsvZzOFlwTlonxTJq9jccBbRhIRfTP4IjOrG5fW9pQUv/IJtrfxOaT+2HgPBdjDqFdSdyRVVFFqMi7+v0gG/UkkBlgrz6bX6fi/oxBSQL11IDXoRpchVVoq/2zusInm0AfVuq3oyfva6v+sXXfAPKcIaAIg9i7jGAvZ98o9MFEa7BAMd836WihzTNYcGJJO7lyyjCx3PyB1qnOg=
   app: elmar-stringcalcweb
   on: master
-
-install:
   - RSYNC_PASSWD=$(openssl enc -base64 -d <<<$SSH_B64_PASS)
   - echo $(pwd)
   - echo $(ls -l)
