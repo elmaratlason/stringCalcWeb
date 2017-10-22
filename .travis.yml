@@ -25,7 +25,7 @@ deploy:
   
 install:  
   - gradle clean build javadoc
-  - mv $TRAVIS_BUILD_DIR/build/distributions/*.zip *$(date +\"%Y%m%d\")_$TRAVIS_JOB_ID.zip
+  - mv $TRAVIS_BUILD_DIR/build/distributions/calcApi.zip calcApi$(date +\"%Y%m%d\")_$TRAVIS_JOB_ID.zip
   - sshpass -e rsync -am --delete $TRAVIS_BUILD_DIR/build/distributions/*.zip $SSH_REMOTE_USER@$REMOTE_SERVER:./
   - sshpass -e rsync -am --delete $TRAVIS_BUILD_DIR/build/reports $SSH_REMOTE_USER@$REMOTE_SERVER:./reports
   
