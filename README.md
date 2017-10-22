@@ -13,10 +13,10 @@ Is a very simple Spark Web application, built with Gradle.
 * To run tests `gradle test`
 
 ### Reports
-can be seen here: http://www.elmaratla.com/hugb/reports/reports/tests/test/
+[can be seen here](http://www.elmaratla.com/hugb/reports/reports/tests/test/)
 
 ### Artifacts
-can be found here: http://www.elmaratla.com/hugb/distributions/
+[can be found here](http://www.elmaratla.com/hugb/distributions/)
 
 ### Running
 Once running, head over to [localhost:4567](http://localhost:4567) and witness the magic.
